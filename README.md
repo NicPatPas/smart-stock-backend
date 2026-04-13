@@ -14,6 +14,7 @@ A Spring Boot backend for inventory and stock management with JWT-based authenti
   - [Run with PostgreSQL](#run-with-postgresql)
 - [API Endpoints](#api-endpoints)
 - [Authentication](#authentication)
+- [Testing Frontend](#testing-frontend)
 - [Testing](#testing)
 - [Configuration](#configuration)
 - [Notes](#notes)
@@ -83,7 +84,7 @@ On Windows PowerShell, the commands are similar:
 
 ```powershell
 cd <project-directory>
-$env:JAVA_HOME='C:\Program Files\Java\jdk-21'
+$env:JAVA_HOME='C:\Program Files\Java\jdk-21.0.10'
 $env:PATH = "$env:JAVA_HOME\bin;" + $env:PATH
 .\tools\apache-maven-3.9.9\bin\mvn.cmd spring-boot:run
 ```
@@ -154,6 +155,14 @@ The application seeds two test users on startup when the database is empty:
 
 On first startup, the app also creates sample categories, products, and inventory transaction history for easier frontend testing.
 
+## Testing Frontend
+
+A React-based frontend built to test this backend is available at:
+
+**[https://github.com/NicPatPas/TestingFrontend](https://github.com/NicPatPas/TestingFrontend)**
+
+It connects to this backend running on `http://localhost:8080` and covers login, product browsing, and inventory management flows.
+
 ## Testing
 
 Run the test suite with Maven:
@@ -189,7 +198,3 @@ jwt:
 - The project ships with Flyway enabled, but there are no migrations yet.
 - Swagger UI is available via Springdoc at `/swagger-ui/index.html` and OpenAPI docs at `/v3/api-docs`.
 - The application is ready for extension with more business rules, refresh token support, and production-ready database migrations.
-
----
-
-If you want, I can also add a `docker-compose.yml` and a PostgreSQL-ready setup section next.
