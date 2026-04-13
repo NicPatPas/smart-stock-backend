@@ -143,6 +143,17 @@ Authorization: Bearer <your-token>
 - `ROLE_USER` can access `GET /api/**` endpoints
 - `ROLE_ADMIN` can access all protected endpoints, including `/api/admin/**`
 
+### Seeded test users
+
+The application seeds two test users on startup when the database is empty:
+
+- **admin** / `admin123` (ADMIN)
+- **user** / `user123` (USER)
+
+### Seeded sample data
+
+On first startup, the app also creates sample categories, products, and inventory transaction history for easier frontend testing.
+
 ## Testing
 
 Run the test suite with Maven:
