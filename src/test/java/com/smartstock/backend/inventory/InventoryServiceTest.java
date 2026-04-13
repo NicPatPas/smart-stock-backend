@@ -89,8 +89,6 @@ class InventoryServiceTest {
 
     @Test
     void correctStockThrowsWhenQuantityZero() {
-        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-
         assertThatThrownBy(() -> inventoryService.correctStock(1L, 0, "tester", "bad request"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Correction quantity must not be zero");
