@@ -34,13 +34,12 @@ public class AuthService {
             throw new UsernameAlreadyExistsException("Username already exists");
         }
 
-        RoleName roleName = RoleName.ROLE_USER;
-        if (request.getRole() != null && request.getRole().equalsIgnoreCase("ADMIN")) {
-            roleName = RoleName.ROLE_ADMIN;
-        }
+        RoleName selectedRole = request.getRole() != null && request.getRole().equalsIgnoreCase("ADMIN")
+                ? RoleName.ROLE_ADMIN
+                : RoleName.ROLE_USER;
 
-        Role role = roleRepository.findByName(roleName)
-                .orElseThrow(() -> new IllegalStateException("Required role not found: " + roleName));
+        Role role = roleRepository.findByName(selectedRole)
+                .orElseThrow(() -> new IllegalStateException("Required role not found: " + selectedRole));
 
         User user = new User(request.getUsername().trim(), passwordEncoder.encode(request.getPassword()), LocalDateTime.now(), LocalDateTime.now());
         user.setRoles(Collections.singleton(role));
