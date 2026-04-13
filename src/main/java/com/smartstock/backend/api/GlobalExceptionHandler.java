@@ -1,7 +1,9 @@
 package com.smartstock.backend.api;
 
+import com.smartstock.backend.category.CategoryNotFoundException;
 import com.smartstock.backend.inventory.InsufficientStockException;
-import com.smartstock.backend.inventory.ProductNotFoundException;
+import com.smartstock.backend.product.ProductNotFoundException;
+import com.smartstock.backend.user.UsernameAlreadyExistsException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,23 +29,18 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler(com.smartstock.backend.inventory.ProductNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleInventoryProductNotFound(com.smartstock.backend.inventory.ProductNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleProductNotFound(ProductNotFoundException ex, HttpServletRequest request) {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler(com.smartstock.backend.product.ProductNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleProductNotFound(com.smartstock.backend.product.ProductNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleCategoryNotFound(CategoryNotFoundException ex, HttpServletRequest request) {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler(com.smartstock.backend.category.CategoryNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleCategoryNotFound(com.smartstock.backend.category.CategoryNotFoundException ex, HttpServletRequest request) {
-        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
-    }
-
-    @ExceptionHandler(com.smartstock.backend.user.UsernameAlreadyExistsException.class)
-    public ResponseEntity<ApiErrorResponse> handleUsernameAlreadyExists(com.smartstock.backend.user.UsernameAlreadyExistsException ex, HttpServletRequest request) {
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorResponse> handleUsernameAlreadyExists(UsernameAlreadyExistsException ex, HttpServletRequest request) {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI());
     }
 

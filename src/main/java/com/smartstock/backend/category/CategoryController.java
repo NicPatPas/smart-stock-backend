@@ -1,5 +1,6 @@
 package com.smartstock.backend.category;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ public class CategoryController {
     @PostMapping("/admin/categories")
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CategoryRequest request) {
         CategoryResponse response = categoryService.createCategory(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/categories")

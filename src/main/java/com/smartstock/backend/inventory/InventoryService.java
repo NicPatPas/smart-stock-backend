@@ -1,6 +1,7 @@
 package com.smartstock.backend.inventory;
 
 import com.smartstock.backend.product.Product;
+import com.smartstock.backend.product.ProductNotFoundException;
 import com.smartstock.backend.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

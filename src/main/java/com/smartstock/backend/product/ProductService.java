@@ -114,6 +114,9 @@ public class ProductService {
         if (request.getLowStockThreshold() == null || request.getLowStockThreshold() < 0) {
             throw new IllegalArgumentException("Low stock threshold must be zero or positive");
         }
+        if (request.getPrice() != null && request.getPrice() < 0) {
+            throw new IllegalArgumentException("Price must not be negative");
+        }
         if (!existingProduct && productRepository.existsBySku(request.getSku())) {
             throw new IllegalArgumentException("SKU must be unique");
         }
