@@ -72,9 +72,18 @@ The backend is organized into modular packages:
 
 The project is configured to start with an in-memory H2 database by default.
 
+```bash
+cd <project-directory>
+export JAVA_HOME="/path/to/java21"
+export PATH="$JAVA_HOME/bin:$PATH"
+./tools/apache-maven-3.9.9/bin/mvn.cmd spring-boot:run
+```
+
+On Windows PowerShell, the commands are similar:
+
 ```powershell
-cd c:\Users\Nico\Desktop\JavaProject\smart-stock-backend
-$env:JAVA_HOME='C:\Program Files\Java\jdk-21.0.10'
+cd <project-directory>
+$env:JAVA_HOME='C:\Program Files\Java\jdk-21'
 $env:PATH = "$env:JAVA_HOME\bin;" + $env:PATH
 .\tools\apache-maven-3.9.9\bin\mvn.cmd spring-boot:run
 ```
@@ -83,10 +92,10 @@ The application starts on `http://localhost:8080`.
 
 ### Run with PostgreSQL
 
-If you want to use PostgreSQL instead of H2, activate the `postgres` profile and configure your database properties in `application-postgres.yml` or environment variables.
+If you want to use PostgreSQL instead of H2, activate the `postgres` profile and configure your database properties in `application-postgres.yml` or with environment variables.
 
-```powershell
-.\tools\apache-maven-3.9.9\bin\mvn.cmd spring-boot:run -Dspring-boot.run.profiles=postgres
+```bash
+./tools/apache-maven-3.9.9/bin/mvn.cmd spring-boot:run -Dspring-boot.run.profiles=postgres
 ```
 
 ## API Endpoints
