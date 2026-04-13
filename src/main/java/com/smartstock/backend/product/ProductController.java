@@ -41,11 +41,11 @@ public class ProductController {
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductResponse>> searchProducts(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String sku,
-            @RequestParam(required = false) Long categoryId,
-            @RequestParam(required = false) Boolean lowStock,
-            @RequestParam(required = false) Boolean available) {
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "sku", required = false) String sku,
+            @RequestParam(name = "categoryId", required = false) Long categoryId,
+            @RequestParam(name = "lowStock", required = false) Boolean lowStock,
+            @RequestParam(name = "available", required = false) Boolean available) {
         return ResponseEntity.ok(productService.searchProducts(name, sku, categoryId, lowStock, available));
     }
 
