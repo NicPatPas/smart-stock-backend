@@ -1,5 +1,6 @@
 package com.smartstock.backend.user;
 
+import com.smartstock.backend.security.JwtUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,10 +20,12 @@ public class AuthController {
 
     private final AuthService authService;
     private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
-    public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
+    public AuthController(AuthService authService, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.authService = authService;
         this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
     }
 
     @PostMapping("/register")
@@ -41,7 +44,8 @@ public class AuthController {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        AuthResponse response = new AuthResponse(request.getUsername(), roles, "Login successful");
+        String token = jwtUtils.generateToken(authentication);
+        AuthResponse response = new AuthResponse(request.getUsername(), roles, token, "Login successful");
         return ResponseEntity.ok(response);
     }
 }

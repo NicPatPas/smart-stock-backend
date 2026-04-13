@@ -17,6 +17,10 @@ spring:
   flyway:
     enabled: true
 
+jwt:
+  secret: change-this-secret-to-a-long-random-value-please-change-in-production
+  expiration-ms: 86400000
+
 logging:
   level:
     org.springframework: INFO
