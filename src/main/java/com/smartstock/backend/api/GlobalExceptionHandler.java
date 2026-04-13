@@ -18,8 +18,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleProductNotFound(ProductNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler(com.smartstock.backend.inventory.ProductNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleInventoryProductNotFound(com.smartstock.backend.inventory.ProductNotFoundException ex, HttpServletRequest request) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
+    }
+
+    @ExceptionHandler(com.smartstock.backend.product.ProductNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleProductNotFound(com.smartstock.backend.product.ProductNotFoundException ex, HttpServletRequest request) {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
     }
 
