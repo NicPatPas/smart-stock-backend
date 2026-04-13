@@ -3,10 +3,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/smart_stock
-    username: postgres
-    password: postgres
+    url: jdbc:h2:mem:smart_stock;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     properties:
